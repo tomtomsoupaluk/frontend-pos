@@ -6,6 +6,7 @@ import Login from "./pages/login/login";
 import Sale from "./pages/sale/sale";
 import Product from "./pages/product/product";
 import User from "./pages/user/user";
+import NotFound from "./pages/notFound/notFound";
 
 // components
 import Drawer from "./components/drawer";
@@ -23,6 +24,7 @@ export default function App({}: Props) {
           <Route path="/sale" element={<Sale />} />
           <Route path="/product" element={<Product />} />
           <Route path="/user" element={<User />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

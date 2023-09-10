@@ -13,7 +13,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 type Props = {
-  onEdit: () => void;
+  onEdit: (id: string, data: any) => void;
+  dataList: any[];
+  onDelete: (id: string) => void;
 };
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -36,11 +38,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const rows = [
-  { id: 1, barcode: "3123215321", name: "Pepsi", qty: 10, price: 10000 },
-  { id: 2, barcode: "4325790572", name: "Coke", qty: 10, price: 8000 },
-];
-
 export default function productTable(props: Props) {
   return (
     <TableContainer component={Paper}>
@@ -56,8 +53,8 @@ export default function productTable(props: Props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <StyledTableRow key={row.id}>
+          {props.dataList.map((row, index) => (
+            <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row" align="center">
                 {index + 1}
               </StyledTableCell>
@@ -66,10 +63,16 @@ export default function productTable(props: Props) {
               <StyledTableCell align="center">{row.qty}</StyledTableCell>
               <StyledTableCell align="center">{row.price}</StyledTableCell>
               <StyledTableCell align="center">
-                <IconButton aria-label="edit" onClick={props.onEdit}>
+                <IconButton
+                  aria-label="edit"
+                  onClick={() => props.onEdit(row._id, row)}
+                >
                   <EditIcon />
                 </IconButton>
-                <IconButton aria-label="delete">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => props.onDelete(row._id)}
+                >
                   <DeleteIcon />
                 </IconButton>
               </StyledTableCell>

@@ -14,8 +14,8 @@ const listIcons = [
   { path: "/", icon: <HomeIcon /> },
   { path: "/sale", icon: <PointOfSaleIcon /> },
   { path: "/product", icon: <InventoryIcon /> },
-  { path: "/report", icon: <ReportIcon /> },
   { path: "/user", icon: <PeopleAltIcon /> },
+  { path: "/report", icon: <ReportIcon /> },
   { path: "/", icon: <LogoutIcon /> },
 ];
 

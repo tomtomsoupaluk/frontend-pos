@@ -14,6 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 type Props = {
   onEdit: () => void;
+  dataList: any[];
 };
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -36,11 +37,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const rows = [
-  { id: 1, username: "jack", age: 27, address: "Vientiane" },
-  { id: 2, username: "ben", age: 22, address: "Vientiane" },
-];
-
 export default function userTable(props: Props) {
   return (
     <TableContainer component={Paper}>
@@ -55,8 +51,8 @@ export default function userTable(props: Props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <StyledTableRow key={row.id}>
+          {props.dataList.map((row, index) => (
+            <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row" align="center">
                 {index + 1}
               </StyledTableCell>
