@@ -10,20 +10,30 @@ import NotFound from "./pages/notFound/notFound";
 
 // components
 import Drawer from "./components/drawer";
+import { useState } from "react";
+import { AuthRoute, PrivateRoute } from "./utils/Router/ProtectedRoutes";
 
 type Props = {};
 
 export default function App({}: Props) {
+  const [isAuth, setIsAuth] = useState(true);
+
   return (
     <BrowserRouter>
-      <Drawer />
-      <div style={{ marginLeft: 70 }}>
+      {isAuth && <Drawer />}
+      <div style={{ marginLeft: isAuth ? 70 : 0 }}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sale" element={<Sale />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/" element={<PrivateRoute isAuth={isAuth} />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/sale" element={<Sale />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/user" element={<User />} />
+          </Route>
+
+          <Route path="/" element={<AuthRoute isAuth={isAuth} />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
