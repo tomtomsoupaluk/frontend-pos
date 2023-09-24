@@ -71,7 +71,7 @@ export default function productDialog(props: Props) {
         <Button variant="contained" color="primary" onClick={props.handleClick}>
           {props.buttonText}
         </Button>
-        <Button variant="contained" color="secondary" onClick={props.onClose}>
+        <Button variant="contained" color="error" onClick={props.onClose}>
           Cancel
         </Button>
       </DialogActions>

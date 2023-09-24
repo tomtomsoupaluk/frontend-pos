@@ -55,7 +55,7 @@ export default function userDialog(props: Props) {
         <Button variant="contained" color="primary">
           Create
         </Button>
-        <Button variant="contained" color="secondary" onClick={props.onClose}>
+        <Button variant="contained" color="error" onClick={props.onClose}>
           Cancel
         </Button>
       </DialogActions>
