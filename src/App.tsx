@@ -10,17 +10,38 @@ import NotFound from "./pages/notFound/notFound";
 
 // components
 import Drawer from "./components/drawer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthRoute, PrivateRoute } from "./utils/Router/ProtectedRoutes";
 
 type Props = {};
 
 export default function App({}: Props) {
   const [isAuth, setIsAuth] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <BrowserRouter>
-      {isAuth && <Drawer />}
+      {isAuth && <Drawer setIsAuth={setIsAuth} />}
       <div style={{ marginLeft: isAuth ? 70 : 0 }}>
         <Routes>
           <Route path="/" element={<PrivateRoute isAuth={isAuth} />}>
@@ -31,7 +52,7 @@ export default function App({}: Props) {
           </Route>
 
           <Route path="/" element={<AuthRoute isAuth={isAuth} />}>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

@@ -2,9 +2,13 @@ import axios, { AxiosResponse } from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+const token = localStorage.getItem("token");
+
 class ProductService {
   getProducts(): Promise<AxiosResponse> {
-    return axios.get(`${API_URL}/products`);
+    return axios.get(`${API_URL}/products`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   getProduct(id: string): Promise<AxiosResponse> {
