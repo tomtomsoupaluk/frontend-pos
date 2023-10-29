@@ -17,8 +17,8 @@ export default function product({}: Props) {
       const getUsers = async () => {
         const users = await userService.getUsers();
 
-        if (users.status === 200) {
-          setUserList(users.data);
+        if (users.data.success === 200) {
+          setUserList(users.data.data);
         }
       };
 

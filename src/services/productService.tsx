@@ -12,19 +12,27 @@ class ProductService {
   }
 
   getProduct(id: string): Promise<AxiosResponse> {
-    return axios.get(`${API_URL}/products/${id}`);
+    return axios.get(`${API_URL}/products/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   createProduct(product: any): Promise<AxiosResponse> {
-    return axios.post(`${API_URL}/products`, product);
+    return axios.post(`${API_URL}/products`, product, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   updateProduct(id: string, product: any): Promise<AxiosResponse> {
-    return axios.put(`${API_URL}/products/${id}`, product);
+    return axios.put(`${API_URL}/products/${id}`, product, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   deleteProduct(id: string): Promise<AxiosResponse> {
-    return axios.delete(`${API_URL}/products/${id}`);
+    return axios.delete(`${API_URL}/products/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 }
 
