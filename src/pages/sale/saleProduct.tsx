@@ -3,7 +3,12 @@ import ProductCard from "../../components/productCard";
 
 type Props = {
   productList: any[];
-  handleAddProductToSale: (barcode: string, price: number, qty: number) => void;
+  handleAddProductToSale: (
+    id: string,
+    barcode: string,
+    price: number,
+    qty: number
+  ) => void;
 };
 
 const saleProduct = (props: Props) => {
@@ -14,6 +19,7 @@ const saleProduct = (props: Props) => {
           {props.productList.map((product) => (
             <Grid key={product.barcode} item xs={12} sm={6} md={4} lg={3}>
               <ProductCard
+                id={product._id}
                 barcode={product.barcode}
                 name={product.name}
                 price={product.price}

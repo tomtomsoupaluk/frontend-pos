@@ -2,13 +2,14 @@ import SaleProduct from "./saleProduct";
 import SaleDetail from "./saleDetail";
 import { useEffect, useState } from "react";
 import productService from "../../services/productService";
+import axios from "axios";
 
 type Props = {};
 
 export default function sale({}: Props) {
   const [productList, setProductList] = useState([]);
   const [productToSale, setProductToSale] = useState<any[]>([]);
-  const [saleData, setSaleData] = useState({});
+  const [saleData, setSaleData] = useState({}) as any;
 
   useEffect(() => {
     try {
@@ -29,6 +30,7 @@ export default function sale({}: Props) {
   }, []);
 
   const handleAddProductToSale = (
+    _id: string,
     barcode: string,
     price: number,
     qty: number
@@ -39,7 +41,7 @@ export default function sale({}: Props) {
     if (index === -1) {
       let qtyToSale = 1;
       let total = price * qtyToSale;
-      newArr.push({ barcode, price, qtyToSale, total });
+      newArr.push({ _id, barcode, price, qtyToSale, total, qty });
     } else {
       if (newArr[index].qtyToSale === qty) {
         return;
@@ -57,8 +59,22 @@ export default function sale({}: Props) {
   };
 
   const handleCheckout = () => {
-    console.log(saleData);
-    console.log(productToSale);
+    const data = {
+      total: productToSale.reduce((acc, curr) => acc + curr.total, 0),
+      paymentMethod: saleData.paymentMethod,
+      products: productToSale,
+    };
+
+    axios({
+      url: "http://localhost:3000/sales",
+      method: "POST",
+      data,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }).then((res) => {
+      console.log(res.data);
+    });
   };
 
   return (

@@ -7,11 +7,17 @@ import Typography from "@mui/material/Typography";
 import Img from "../assets/images/no-image.png";
 
 type Props = {
+  id: string;
   barcode: string;
   name: string;
   price: number;
   qty: number;
-  handleAddProductToSale: (barcode: string, price: number, qty: number) => void;
+  handleAddProductToSale: (
+    id: string,
+    barcode: string,
+    price: number,
+    qty: number
+  ) => void;
 };
 
 export default function productCard(props: Props) {
@@ -30,7 +36,12 @@ export default function productCard(props: Props) {
         <Button
           size="small"
           onClick={() =>
-            props.handleAddProductToSale(props.barcode, props.price, props.qty)
+            props.handleAddProductToSale(
+              props.id,
+              props.barcode,
+              props.price,
+              props.qty
+            )
           }
         >
           Add
