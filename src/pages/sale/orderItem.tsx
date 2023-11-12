@@ -1,15 +1,21 @@
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Img from "../../assets/images/1.jpg";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  IconButton,
+} from "@mui/material/";
+import Img from "../../assets/images/no-image.png";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 type Props = {
+  id: string;
   barcode: string;
   name: string;
   price: number;
   qtyToSale: number;
+  handleDeleteProductToSale: (id: string) => void;
 };
 
 export default function OderItem(props: Props) {
@@ -21,8 +27,8 @@ export default function OderItem(props: Props) {
         image={Img}
         alt="Live from space album cover"
       />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
+      <CardContent sx={{ display: "flex", width: "100%" }}>
+        <Box flex={3}>
           <Typography component="div" variant="body1">
             {props.name}
           </Typography>
@@ -40,8 +46,18 @@ export default function OderItem(props: Props) {
           >
             {props.price}
           </Typography>
-        </CardContent>
-      </Box>
+        </Box>
+        <Box
+          flex={1}
+          display={"flex"}
+          justifyContent={"flex-end"}
+          alignItems={"flex-end"}
+        >
+          <IconButton onClick={() => props.handleDeleteProductToSale(props.id)}>
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      </CardContent>
     </Card>
   );
 }

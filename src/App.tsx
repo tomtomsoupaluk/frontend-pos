@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import authService from "./services/authService";
 
 // pages
 import Home from "./pages/home/home";
@@ -22,13 +23,23 @@ export default function App({}: Props) {
   useEffect(() => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
 
-      if (token) {
-        setIsAuth(true);
-      } else {
-        setIsAuth(false);
-      }
+      authService
+        .validateToken()
+        .then((res) => {
+          if (res.data.success) {
+            setIsAuth(true);
+          } else {
+            setIsAuth(false);
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsAuth(false);
+          localStorage.removeItem("token");
+        });
+
       setLoading(false);
     } catch (error) {
       console.log(error);

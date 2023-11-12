@@ -16,7 +16,8 @@ type Props = {
     id: string,
     barcode: string,
     price: number,
-    qty: number
+    qty: number,
+    name: string
   ) => void;
 };
 
@@ -40,7 +41,8 @@ export default function productCard(props: Props) {
               props.id,
               props.barcode,
               props.price,
-              props.qty
+              props.qty,
+              props.name
             )
           }
         >

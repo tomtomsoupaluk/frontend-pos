@@ -12,6 +12,7 @@ type Props = {
   handleSelectPaymentMethod: (method: string) => void;
   saleData: any;
   handleCheckout: () => void;
+  handleDeleteProductToSale: (id: string) => void;
 };
 
 const paymentMethods = [
@@ -38,10 +39,12 @@ const saleDetail = (props: Props) => {
           {props.productToSale.map((product) => (
             <OrderItem
               key={product.barcode}
+              id={product._id}
               barcode={product.barcode}
               name={product.name}
               price={product.price}
               qtyToSale={product.qtyToSale}
+              handleDeleteProductToSale={props.handleDeleteProductToSale}
             />
           ))}
         </Box>

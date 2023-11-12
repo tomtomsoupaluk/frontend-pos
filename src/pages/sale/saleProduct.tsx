@@ -7,7 +7,8 @@ type Props = {
     id: string,
     barcode: string,
     price: number,
-    qty: number
+    qty: number,
+    name: string
   ) => void;
 };
 
