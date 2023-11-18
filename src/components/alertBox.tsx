@@ -4,8 +4,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import SuccessImg from "../assets/images/success.png";
-import ErrorImg from "../assets/images/error.png";
+import SuccessImg from "@/assets/images/success.png";
+import ErrorImg from "@/assets/images/error.png";
 
 type Props = {
   success: boolean;
@@ -35,7 +35,7 @@ export default function MaxWidthDialog(props: Props) {
             width={"150px"}
           />
           <br />
-          <DialogContentText variant="h6" textAlign={'center'}>
+          <DialogContentText variant="h6" textAlign={"center"}>
             {props.success
               ? "Your request has been successfully processed."
               : props.errorMessages}

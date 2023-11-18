@@ -7,6 +7,11 @@ import Login from "./pages/login/login";
 import Sale from "./pages/sale/sale";
 import Product from "./pages/product/product";
 import User from "./pages/user/user";
+import Report from "./pages/report/report";
+import DailyReport from "./pages/report/dailyReport";
+import WeeklyReport from "./pages/report/weeklyReport";
+import MonthlyReport from "./pages/report/monthlyReport";
+import YesterdayReport from "./pages/report/yesterdayReport";
 import NotFound from "./pages/notFound/notFound";
 
 // components
@@ -60,6 +65,11 @@ export default function App({}: Props) {
             <Route path="/sale" element={<Sale />} />
             <Route path="/product" element={<Product />} />
             <Route path="/user" element={<User />} />
+            <Route path="report" element={<Report />} />
+            <Route path="report/daily-sale" element={<DailyReport />} />
+            <Route path="report/weekly-sale" element={<WeeklyReport />} />
+            <Route path="report/monthly-sale" element={<MonthlyReport />} />
+            <Route path="report/yesterday-sale" element={<YesterdayReport />} />
           </Route>
 
           <Route path="/" element={<AuthRoute isAuth={isAuth} />}>

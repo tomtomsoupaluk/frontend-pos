@@ -3,35 +3,30 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
-  amount: number;
-  color: string;
-  loading: boolean;
+  path: string;
 };
 
 export default function BasicCard(props: Props) {
-  function numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+  const navigate = useNavigate();
+
+  const navigateTo = () => {
+    navigate(props.path);
+  };
   return (
     <Card sx={{ width: 275, m: 2 }}>
       <CardContent>
         <Typography variant="h6" color="text.secondary" gutterBottom>
           {props.title}
         </Typography>
-        <Typography variant="h5" component="div" color={props.color}>
-          {props.loading ? (
-            <CircularProgress />
-          ) : (
-            numberWithCommas(props.amount) + " LAK"
-          )}
-        </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">More</Button>
+        <Button size="small" onClick={navigateTo}>
+          View
+        </Button>
       </CardActions>
     </Card>
   );

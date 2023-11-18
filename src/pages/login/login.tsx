@@ -8,7 +8,7 @@ type Props = {
   setIsAuth: (isAuth: boolean) => void;
 };
 
-export default function Login(props: Props) {
+export default function Login({}: Props) {
   const [loginData, setLoginData] = useState<any>({});
 
   const handleLogin = async () => {
@@ -17,7 +17,8 @@ export default function Login(props: Props) {
 
       if (login.data.success) {
         localStorage.setItem("token", login.data.data.token);
-        props.setIsAuth(true);
+        // props.setIsAuth(true);
+        window.location.reload();
       } else {
         console.log(login);
       }
