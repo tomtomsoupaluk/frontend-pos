@@ -1,11 +1,11 @@
-import { useRef } from "react";
+// import { useRef } from "react";
 import { Button, Container, Divider, Typography } from "@mui/material";
 import OrderItem from "./orderItem";
 import { Box } from "@mui/system";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 
-import ReactToPrint from "react-to-print";
+// import ReactToPrint from "react-to-print";
 
 type Props = {
   productToSale: any[];
@@ -21,7 +21,7 @@ const paymentMethods = [
 ];
 
 const saleDetail = (props: Props) => {
-  const componentRef = useRef(null);
+  // const componentRef = useRef(null);
   return (
     <div style={{ backgroundColor: "#fff", height: "100vh" }}>
       <Container maxWidth="lg">
