@@ -23,8 +23,8 @@ const saleProduct = (props: Props) => {
                 id={product._id}
                 barcode={product.barcode}
                 name={product.name}
-                price={product.price}
                 qty={product.qty}
+                price={product.price}
                 handleAddProductToSale={props.handleAddProductToSale}
               />
             </Grid>

@@ -32,6 +32,9 @@ export default function productCard(props: Props) {
         <Typography variant="body2" color="text.secondary">
           {props.price} LAK
         </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.qty}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button
