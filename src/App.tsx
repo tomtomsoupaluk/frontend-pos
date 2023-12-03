@@ -27,7 +27,7 @@ export default function App({}: Props) {
 
   useEffect(() => {
     try {
-      setLoading(true);
+      setLoading(false);
 
       authService
         .validateToken()
